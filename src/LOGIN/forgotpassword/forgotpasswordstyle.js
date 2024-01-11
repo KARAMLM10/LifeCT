@@ -36,7 +36,7 @@ export const containerStyle = StyleSheet.create({
       borderRadius: 10,
       height: 50,
       paddingLeft: 20,
-      marginBottom: 20,
+      //marginBottom: 20,
       textAlign: 'center',
       width: screenWidth >= 374 ? 350 : 350,
       alignSelf: 'center',

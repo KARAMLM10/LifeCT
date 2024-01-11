@@ -72,33 +72,54 @@ import {
 } from '../LOGIN/loginstyle'; 
 
 import { useNavigation } from '@react-navigation/native'; 
-import { useEffect } from 'react';
+import { useState } from 'react';
 
 export default function LoginForm() {
 
-  const navigation = useNavigation(); 
-  useEffect(() => {
-    console.log('LoginForm mounted');
-    return () => console.log('LoginForm unmounted');
-  }, []);
+  const [userName, setUserName] = useState("");
+  const [password, setPassword] = useState("");
+  const [userNameError, setUserNameError] = useState("");
+  const [passwordError, setPasswordError] = useState("");
+  const navigation = useNavigation();
 
-  useEffect(() => {
-    console.log('Async operation started');
+  const handleLoginPress = async () => {
+    setUserNameError("");
+    setPasswordError("");
 
-    // Simulera en asynkron operation
-    const asyncOperation = async () => {
-      // ... övrig kod ...
-      console.log('Async operation completed');
-    };
+    if (!userName || !password) {
+      if (!userName) {
+        setUserNameError("Fyll i användarnamn");
+      }
+      if (!password) {
+        setPasswordError("Fyll i lösenord");
+      }
+      return;
+    }
 
-    asyncOperation();
-  }, []);
+    try {
+      const result = await fetch('https://localhost:7001/User/Login', {
+        method: 'post',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ userName, password })
+      });
 
-  const handleLoginPress = () => {
-    console.log('Navigating to test screen');
-    
-    navigation.navigate('test');
+      if (result.status === 200) {
+        const data = await result.json();
+        console.log(data);
+        localStorage.setItem("token", data.token);
+        navigation.navigate('test');
+      } 
+      else {
+        console.log("Inloggning misslyckades");
+      }
+    } catch (error) {
+      console.error("Något gick fel:", error);
+    }
   };
+
+
   const handleforgotpasswordPress = () => {
     navigation.navigate('forgotpassword');
   };
@@ -120,16 +141,22 @@ const handleregisterpress = () => {
        <Text style = {TextInputStyle.LabelStyle}>Användarnamn</Text>
         <TextInput
           placeholder="Användarnamn"
+          value={userName}
+          onChangeText={(text) => setUserName(text)}
           placeholderTextColor="#fff"
           style={inputStyle.input}
         />
+         <Text style={{ color: 'red' }}>{userNameError}</Text>
         <Text style = {TextInputStyle.LabelStyle}>Lösenord</Text>
         <TextInput
           placeholder="Lösenord"
+          value={password}
+          onChangeText={(text) => setPassword(text)}
           placeholderTextColor="#fff"
           secureTextEntry={true}
           style={inputStyle.input}
         />
+         <Text style={{ color: 'red' }}>{passwordError}</Text>
         <View>
           <Text style = {linkStyle.forgotpassword} onPress={handleforgotpasswordPress}>
             <Text style={linkStyle.forgot}>Glömt Lösenord</Text>
