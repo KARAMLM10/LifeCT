@@ -30,7 +30,8 @@ export const buttonStyle = StyleSheet.create({
     container2: {
      
       backgroundColor: '#411663',
-      //padding: 20,    
+      //padding: 20,  
+      //app.UseCors(x => x.AllowAnyHeader().AllowAnyOrigin().AllowAnyMethod());  
     },
   });
   
@@ -38,5 +39,13 @@ export const buttonStyle = StyleSheet.create({
     iconContainer1: {
       marginLeft:15,
       marginTop:30,
+    },
+  });
+  export   const errorStyle = StyleSheet.create({
+    errormessage:{
+       alignItems:'center',
+      marginTop:15,
+      color:'#FF0000',
+      textAlign: 'center',
     },
   });
