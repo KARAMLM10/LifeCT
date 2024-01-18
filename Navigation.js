@@ -8,6 +8,8 @@ import Test from './src/LOGIN/test';
 import ForgotPassword from './src/LOGIN/forgotpassword/forgotpassword';
 import Register from './src/LOGIN/Register/Register';
 import LoginView from './src/Views/loginview';
+import StepCounter from './src/STEPCOUNTER/Stepcounter';
+import Navbar from './src/NAVBAR/Navbar';
 
 const Stack = createNativeStackNavigator();
 
@@ -23,6 +25,8 @@ const Navigation = () => {
         component={Test}/>
         <Stack.Screen name='forgotpassword' options={{headerShown: false}} component={ForgotPassword}/>
         <Stack.Screen name='register' options={{headerShown: false}} component={Register}/>
+        <Stack.Screen name='StepCounter' options= {{headerShown: false}} component={StepCounter}/> 
+        <Stack.Screen name='Navbar' options={{headerShown: false}} component={Navbar}/>
       </Stack.Navigator>
     </NavigationContainer>
   );

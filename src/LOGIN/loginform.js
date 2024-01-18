@@ -109,7 +109,7 @@ export default function LoginForm() {
         const data = await result.json();
         console.log(data);
         localStorage.setItem("token", data.token);
-        navigation.navigate('test');
+        navigation.navigate('StepCounter'); // Här ändrar man 
       } 
       else {
         console.log("Inloggning misslyckades");
