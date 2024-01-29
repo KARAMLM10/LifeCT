@@ -127,6 +127,13 @@ const handleregisterpress = () => {
   navigation.navigate('register');
 };
 
+        //  profile-settings 
+        const gotoprofile = () => {
+          navigation.navigate('accountsettings');
+        };
+        //  profile-settings 
+
+
   return (    
     <View style={containerStyle.container}>
     
@@ -166,6 +173,17 @@ const handleregisterpress = () => {
         <TouchableOpacity style={buttonStyle.button} onPress={handleLoginPress}>
            <Text style={buttonStyle.buttonText}>Logga in</Text>
         </TouchableOpacity>
+
+        {/* profile-settings */}
+        <br/>
+        <br/>
+        <br/>
+        <TouchableOpacity style={buttonStyle.button} onPress={gotoprofile}>
+           <Text style={buttonStyle.buttonText}>profilesettings</Text>
+        </TouchableOpacity>
+        {/* profile-settings */}
+
+
       </View>
       <View style={linkStyle.link}>
         <Text style={linkStyle.linkText}>

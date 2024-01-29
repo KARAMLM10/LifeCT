@@ -40,7 +40,21 @@ export const containerStyle = StyleSheet.create({
       textAlign: 'center',
       width: screenWidth >= 374 ? 350 : 350,
       alignSelf: 'center',
-    }
+    },
+    pickerContainer: {
+      backgroundColor: '#fff',
+      borderRadius: 10,
+      height: 50,
+      marginBottom: 20,
+      width: screenWidth >= 374 ? 350 : 350,
+      alignSelf: 'center',
+      borderWidth: 1,
+      borderColor: '#ccc',
+    },
+    picker: {
+      height: 50,
+      width: '100%',
+    },
   });
 
   export const ContainerStyle = StyleSheet.create({
@@ -57,5 +71,4 @@ export const containerStyle = StyleSheet.create({
       marginTop:30,
     },
   });
-  
   

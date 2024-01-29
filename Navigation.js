@@ -10,6 +10,9 @@ import Register from './src/LOGIN/Register/Register';
 import LoginView from './src/Views/loginview';
 import StepCounter from './src/STEPCOUNTER/Stepcounter';
 import Navbar from './src/NAVBAR/Navbar';
+import Accountsetting from './src/PROFILE/Accountsettings';
+import TrainingsSettings from './src/PROFILE/TrainingsSettings/TrainingsSettings';
+import ProfileForm from './src/PROFILE/PROFILEFORM/ProfileForm';
 
 const Stack = createNativeStackNavigator();
 
@@ -27,6 +30,10 @@ const Navigation = () => {
         <Stack.Screen name='register' options={{headerShown: false}} component={Register}/>
         <Stack.Screen name='StepCounter' options= {{headerShown: false}} component={StepCounter}/> 
         <Stack.Screen name='Navbar' options={{headerShown: false}} component={Navbar}/>
+        <Stack.Screen name='accountsettings' options={{headerShown:false}} component={Accountsetting} />
+        <Stack.Screen name='trainingssettings' options={{headerShown:false}} component={TrainingsSettings} />
+        <Stack.Screen name='profileform' options={{headerShown:false}} component={ProfileForm} />
+        
       </Stack.Navigator>
     </NavigationContainer>
   );
