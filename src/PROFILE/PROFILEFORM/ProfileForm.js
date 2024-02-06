@@ -165,6 +165,11 @@ const ProfileForm = ({ navigation }) => {
   const goBack = () => {
     navigation.goBack();
   };
+  const gotoEDitimg = () => {
+    navigation.navigate('Editimage');
+  };
+
+
   return (
     <ScrollView contentContainerStyle={ContainerStyle.Container}>
       <SafeAreaView style={ContainerStyle.safeArea}>
@@ -176,7 +181,7 @@ const ProfileForm = ({ navigation }) => {
         <Image style={Imagestyle.Image}/>
       </View>
       <View style={ContainerStyle.button1}>
-        <TouchableOpacity style={Button1Style.Button1}>
+        <TouchableOpacity style={Button1Style.Button1} onPress={gotoEDitimg}>
           <Text style={TextStle.save}>Redigera Bild</Text>
         </TouchableOpacity>
       </View>
