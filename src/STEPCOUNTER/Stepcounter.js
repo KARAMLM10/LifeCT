@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
 import { AnimatedCircularProgress } from 'react-native-circular-progress';
 import Icon from 'react-native-vector-icons/FontAwesome5';
-import {styles,innerContent,stepsCount,goalText,tabBar,button,buttonText} from '../../src/STEPCOUNTER/StepcounterStyle';
+import {styles,innerContent,stepsCount,goalText,tabBar,button,buttonText,circularProgressConfig} from '../STEPCOUNTER/Stepcounterstyle';
 import Navbar from '../NAVBAR/Navbar';
 const Stepcounter = () => {
     // Hanterare för knapptryckningar
@@ -22,12 +22,12 @@ const Stepcounter = () => {
     return (
       <View style={styles.container}>
         <AnimatedCircularProgress               
-          size={300}
-          width={15}
-          fill={75} // Anta att 7458 är 75% av 10000
-          tintColor="#7FFF00" // Grön färg för framstegsindikatorn
-          backgroundColor="white" // Mörkare bakgrundsfärg för framstegsindikatorn
-          padding={10} // Om du vill ha lite utrymme mellan framstegsindikatorn och innehållet
+          size={circularProgressConfig.size}
+          width={circularProgressConfig.width}
+          fill={circularProgressConfig.fill}
+          tintColor={circularProgressConfig.tintColor}
+          backgroundColor={circularProgressConfig.backgroundColor}
+          padding={circularProgressConfig.padding}
         >
           {
             (fill) => (

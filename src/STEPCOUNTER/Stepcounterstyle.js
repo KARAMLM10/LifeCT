@@ -67,3 +67,12 @@ export const innerContent = StyleSheet.create({
     fontWeight: 'bold',
   },
 });
+
+export const circularProgressConfig = {
+  size: 300,
+  width: 15,
+  fill: 75, // Anta att detta är ett exempelvärde och kan behöva uppdateras dynamiskt i din komponent
+  tintColor: "#7FFF00", // Grön färg för framstegsindikatorn
+  backgroundColor: "white", // Bakgrundsfärg för cirkeln
+  padding: 10, // Om du behöver utrymme runt cirkeln
+};

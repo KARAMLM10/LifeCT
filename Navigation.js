@@ -14,6 +14,9 @@ import Accountsetting from './src/PROFILE/Accountsettings';
 import TrainingsSettings from './src/PROFILE/TrainingsSettings/TrainingsSettings';
 import ProfileForm from './src/PROFILE/PROFILEFORM/ProfileForm';
 import EditIMGForm from './src/PROFILE/PROFILEFORM/EDITimg/EditIMGform';
+import Competition from './src/COMPETITION/Competition';
+import SearchCompetition from './src/SEARCHCOMPETITION/SearchCompetition';
+
 
 const Stack = createNativeStackNavigator();
 
@@ -35,6 +38,8 @@ const Navigation = () => {
         <Stack.Screen name='trainingssettings' options={{headerShown:false}} component={TrainingsSettings} />
         <Stack.Screen name='profileform' options={{headerShown:false}} component={ProfileForm} />
         <Stack.Screen name='Editimage' options={{headerShown:false}} component={EditIMGForm} />
+        <Stack.Screen name='Competition'options={{headerShown:false}} component={Competition} />
+        <Stack.Screen name='SearchCompetition'options={{headerShown:false}} component={SearchCompetition} />
       </Stack.Navigator>
     </NavigationContainer>
   );
