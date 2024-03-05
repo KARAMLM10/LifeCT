@@ -69,6 +69,15 @@ export const buttonStyle = StyleSheet.create({
        marginTop:-20,
     width:100,
   },
+  button1:{
+    backgroundColor: '#2BF10B',
+    borderRadius: 10,
+    height: 40,
+    alignItems: 'center',
+    justifyContent: 'center', 
+       marginTop:20,
+    width:100,
+  },
   buttonText: {
     color: 'black',
     fontSize: 20,
@@ -100,23 +109,3 @@ export const linkStyle = StyleSheet.create({
     fontSize:18,
   },
 });
-
-
-// export const linkStyle = StyleSheet.create({
-//   link: {
-//     alignItems: 'center',
-//     marginTop: 20,
-//   },
-//   linkText1: {
-//     color: 'white',
-//     textDecorationLine: 'none',
-//   },
-//   linkText2: {
-//     color: '#2BF10B',
-//     textDecorationLine: 'none',
-//   },
-//   forgotpassword : {
-    
-//   },
-// });
-// styles.js

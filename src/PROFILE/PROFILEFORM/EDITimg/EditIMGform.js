@@ -1,39 +1,99 @@
 //version-3
-import React, { useState } from "react";
+import React, { useEffect,useState } from "react";
 import { View, SafeAreaView, TouchableOpacity, Text, Image } from "react-native";
 import Icon from "react-native-vector-icons/FontAwesome";
 import { ContainerStyle, TextStyle,buttonstyle,IconStyle, PictureStyle, ImageStyle } from "./EditimgStyle";
-
+import * as ImagePicker from 'expo-image-picker';
+import ImageViewer from './imgviwer';
 
 export default function EditIMGForm({ navigation }) {
-  const [imageUri, setImageUri] = useState(null);
-
-  // Funktion för att välja bild från enheten
-  const pickImage = () => {
-    // Implementera logik för att välja bild på webben
-    // Exempel: använd HTML5 input type="file"
-    const inputElement = document.createElement("input");
-    inputElement.type = "file";
-    inputElement.accept = "image/*";
-    inputElement.onchange = (event) => {
-      const file = event.target.files[0];
-      if (file) {
-        const imageUrl = URL.createObjectURL(file);
-        setImageUri(imageUrl);
-      }
-    };
-    inputElement.click();
-  };
   
-  // Funktion för att ta bort den aktuella bilden
-  const deleteImage = () => {
-    setImageUri(null);
+  const [profileImageUrl, setProfileImageUrl] = useState('');
+
+//get-profile-version-3
+useEffect(() => {
+  const fetchData = async () => {
+    try{
+      const token = localStorage.getItem("token");
+      const result = await fetch ('https://localhost:7001/Profile/GetSpecific', {
+        headers: {
+          "Authorization":  `Bearer ${token}`
+        },
+      });
+
+      if(result.status === 200){
+      
+        const data = await result.json();
+        setProfileImageUrl(data.profileImageUrl);
+               
+      }
+      else{
+        console.log(" else error" + result.status);
+      }
+    }
+    catch (error){
+      console.log('catch error fetching data ', error);
+    }
   };
+  fetchData();
+},[]);
+
+
+//version-3
+const EDITIMG = async () => {
+  try {
+    const token = localStorage.getItem("token");
+    const result = await fetch('https://localhost:7001/Profile/UpdateProfileImage', {
+      method: 'PUT',
+      headers: {
+        "Authorization": `Bearer ${token}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(profileImageUrl),
+    });
+    console.log(result);
+
+    // Logga svaret som text för att inspektera innehållet
+    const responseText = await result.text();
+    console.log("Response Text:", responseText);
+
+    if (result.status === 200) {
+      // Använd responseText direkt om det inte är JSON
+      setProfileImageUrl(responseText);
+    } else {
+      console.log("Else error", result.status);
+    }
+  } catch (error) {
+    console.log('Catch error fetching data ', error);
+  }
+};
+
+
+const pickImage = async () => {
+  let result = await ImagePicker.launchImageLibraryAsync({
+    allowsEditing: true,
+    quality: 1,
+  });
+
+  if (!result.canceled) {
+    setProfileImageUrl(result.assets[0].uri);
+  } else {
+    alert("You did not select any image.");
+  }
+};
+
+
+// Funktion för att ta bort den aktuella bilden
+  function deleteImage() {
+    setProfileImageUrl(null);
+  }
   
   // Go-back
   const goBack = () => {
     navigation.goBack();
   };
+
+ 
 
   return (
     <View style={ContainerStyle.Container}>
@@ -46,16 +106,17 @@ export default function EditIMGForm({ navigation }) {
           {/* picture-view */}
       <View style={ContainerStyle.Container3}>
         <View style={PictureStyle.Picture}>
-            <TouchableOpacity onPress={pickImage}>
-
-            {imageUri ? (
-              <Image source={{ uri: imageUri }} style={ImageStyle.Image} />
+            <TouchableOpacity selectedImage={profileImageUrl} value={profileImageUrl} onPress={pickImage}>
+              
+            {profileImageUrl ? (
+              <Image source={{ uri: profileImageUrl }} style={ImageStyle.Image} />
             ) : (
               <Text style={TextStyle.ButtonText2}>+</Text>
             )}
             </TouchableOpacity>
         </View>        
       </View>
+     
           {/* select-picture-view */}
       <View style={ContainerStyle.chooseButtonContainer}>
          <TouchableOpacity style={buttonstyle.chooseimg} 
@@ -78,8 +139,10 @@ export default function EditIMGForm({ navigation }) {
               {/* save-button-view */}
         <View style={ContainerStyle.chooseButtonContainer3}>
         <TouchableOpacity style={buttonstyle.chooseimg}>
-            <Text style={TextStyle.ButtonText1}>Spara</Text>
+            <Text style={TextStyle.ButtonText1} onPress={EDITIMG}>Spara</Text>
          </TouchableOpacity>
+        
+
         </View>
     </View>
   );
