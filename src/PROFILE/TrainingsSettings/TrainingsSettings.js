@@ -1,3 +1,4 @@
+//trainingsSettings.js
 // import React from "react";
 // import {View, TouchableOpacity, SafeAreaView} from 'react-native';
 // import {ContainerStyle} from '../TrainingsSettings/TrainingsSettingsSTYLE'
@@ -41,7 +42,34 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import { IconStyle } from '../../LOGIN/Register/Registerstyle';
 
 export default function TrainingsSettings({ navigation }) {
-  const [counter, setCounter] = useState(1000);
+  const [counter, setCounter] = useState(0);
+
+  const Setstepgoal = async () => {
+      try {
+        const result = await fetch('https://localhost:7001/StepCounting/SetStepGoal', {
+            method :'post',
+            headers: {
+                'Content-Type' : 'application/json'
+            },
+            body: JSON.stringify({counter})
+        });  
+        if (result.status === 200) {
+          const data = await result.json();
+          console.log(data);
+
+        }
+        else {
+          console.log('setstep goal misslyckades');
+        }
+      } 
+      catch (error) {
+        console.log('catch setstep goal något gick fel', error);
+      }
+  };
+
+
+
+
 
   // Funktion för att minska värdet
   const decreaseCounter = () => {
@@ -89,7 +117,7 @@ export default function TrainingsSettings({ navigation }) {
         </TouchableOpacity>
       </View>
       <View style={ContainerSaveStyle.Save}>
-        <TouchableOpacity style={Button1Style.Button3}>
+        <TouchableOpacity style={Button1Style.Button3} onPress={Setstepgoal}>
           <Text style={TextStle.save} >Spara</Text>
         </TouchableOpacity>
       </View>

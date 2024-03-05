@@ -1,62 +1,4 @@
-// import React from 'react';
-// import { View, Text, TextInput, TouchableOpacity } from 'react-native';
-
-// export default function LoginForm() {
-//   return (
-//     <View style={{ flex: 1, backgroundColor: '#6C63FF', padding: 20 }}>
-//       <View style={{ alignItems: 'center', marginTop: 100 }}>
-//         <Text style={{ color: '#fff', fontSize: 30, fontWeight: 'bold' }}>
-//           LIFECT
-//         </Text>
-//       </View>
-//       <View style={{ marginTop: 100 }}>
-//         <TextInput
-//           placeholder="Användarnamn"
-//           placeholderTextColor="#fff"
-//           style={{
-//             backgroundColor: '#fff',
-//             borderRadius: 10,
-//             height: 50,
-//             paddingLeft: 20,
-//             marginBottom: 20,
-//           }}
-//         />
-//         <TextInput
-//           placeholder="Lösenord"
-//           placeholderTextColor="#fff"
-//           secureTextEntry={true}
-//           style={{
-//             backgroundColor: '#fff',
-//             borderRadius: 10,
-//             height: 50,
-//             paddingLeft: 20,
-//             marginBottom: 20,
-//           }}
-//         />
-//         <TouchableOpacity
-//           style={{
-//             backgroundColor: '#00BFA6',
-//             borderRadius: 10,
-//             height: 50,
-//             alignItems: 'center',
-//             justifyContent: 'center',
-//           }}
-//         >
-//           <Text style={{ color: '#fff', fontSize: 20 }}>Logga in</Text>
-//         </TouchableOpacity>
-//       </View>
-//       <View style={{ alignItems: 'center', marginTop: 20 }}>
-//         <Text style={{ color: '#fff' }}>
-//           Inte medlem?{' '}
-//           <Text style={{ color: '#fff', textDecorationLine: 'underline' }}>
-//             Registrera dig här
-//           </Text>
-//         </Text>
-//       </View>
-//     </View>
-//   );
-// }
-
+// LOGINform.js  fill
 
 //version-2 
 // LoginForm.js
@@ -109,7 +51,7 @@ export default function LoginForm() {
         const data = await result.json();
         console.log(data);
         localStorage.setItem("token", data.token);
-        navigation.navigate('StepCounter'); // Här ändrar man 
+        navigation.navigate('accountsettings'); // Här ändrar man 
       } 
       else {
         console.log("Inloggning misslyckades");
@@ -129,7 +71,7 @@ const handleregisterpress = () => {
 
         //  profile-settings 
         const gotoprofile = () => {
-          navigation.navigate('accountsettings');
+          navigation.navigate('compititionadmin');
         };
         //  profile-settings 
 
@@ -175,11 +117,9 @@ const handleregisterpress = () => {
         </TouchableOpacity>
 
         {/* profile-settings */}
-        <br/>
-        <br/>
-        <br/>
-        <TouchableOpacity style={buttonStyle.button} onPress={gotoprofile}>
-           <Text style={buttonStyle.buttonText}>profilesettings</Text>
+        
+        <TouchableOpacity style={buttonStyle.button1} onPress={gotoprofile}>
+           <Text style={buttonStyle.buttonText}>compititionadmin</Text>
         </TouchableOpacity>
         {/* profile-settings */}
 
