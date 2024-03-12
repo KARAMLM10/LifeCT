@@ -84,9 +84,38 @@ const pickImage = async () => {
 
 
 // Funktion för att ta bort den aktuella bilden
-  function deleteImage() {
-    setProfileImageUrl(null);
-  }
+  // function deleteImage() {
+  //   setProfileImageUrl(null);
+  // }
+
+  const deleteImage = async () =>  {
+    try {
+      const token = localStorage.getItem("token");
+      const result = await fetch('https://localhost:7001/Profile/RemoveProfileImage', {
+        method: 'POST',
+        headers: {
+          "Authorization": `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(profileImageUrl),
+      });
+      console.log(result);
+  
+      // Logga svaret som text för att inspektera innehållet
+      const responseText = await result.text();
+      console.log("Response Text:", responseText);
+
+      if (result.status === 200) {
+        // Använd responseText direkt om det inte är JSON
+        setProfileImageUrl(responseText);
+      } else {
+        console.log("Else error", result.status);
+      }
+    }
+     catch (errordelet){
+        console.log('catch error gick inte att radera ', errordelet)
+    }
+  };
   
   // Go-back
   const goBack = () => {
@@ -127,14 +156,22 @@ const pickImage = async () => {
             {/* delet-picture-view */}
      
       <View style={ContainerStyle.chooseButtonContainer2}>
-          { ( // Visa om det finns en bild eller ingen bild
+          {/* { ( 
             <TouchableOpacity
               style={buttonstyle.chooseimg}
               onPress={deleteImage}
             >
               <Text style={TextStyle.ButtonText1}>Ta bort bild</Text>
             </TouchableOpacity>
-          )}
+          )} */}
+          
+            <TouchableOpacity
+              style={buttonstyle.chooseimg}
+              onPress={deleteImage}
+            >
+              <Text style={TextStyle.ButtonText1}>Ta bort bild</Text>
+            </TouchableOpacity>
+          
       </View>
               {/* save-button-view */}
         <View style={ContainerStyle.chooseButtonContainer3}>
