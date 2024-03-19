@@ -60,6 +60,7 @@ const EDITIMG = async () => {
     if (result.status === 200) {
       // Använd responseText direkt om det inte är JSON
       setProfileImageUrl(responseText);
+      navigation.navigate('accountsettings');
     } else {
       console.log("Else error", result.status);
     }
@@ -108,6 +109,7 @@ const pickImage = async () => {
       if (result.status === 200) {
         // Använd responseText direkt om det inte är JSON
         setProfileImageUrl(responseText);
+        navigation.navigate('accountsettings');
       } else {
         console.log("Else error", result.status);
       }

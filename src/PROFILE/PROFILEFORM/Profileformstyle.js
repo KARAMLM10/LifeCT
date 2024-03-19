@@ -75,7 +75,8 @@ export const inputStyle = StyleSheet.create({
     width:160,
     borderRadius:10,
     alignItems:'center',
-    justifyContent:'center'
+    justifyContent:'center',
+    marginTop:10,
   },
   Button2:{
     backgroundColor:'#FD0808',
@@ -84,6 +85,8 @@ export const inputStyle = StyleSheet.create({
     borderRadius:10,
     alignItems:'center',
     justifyContent:'center',
+    marginTop:10,
+    marginBottom:90,
   },
 });
 export const TextStle = StyleSheet.create({

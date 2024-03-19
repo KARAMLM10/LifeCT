@@ -127,7 +127,7 @@ export default function Register() {
 
   // Go-back
   const goBack = () => {
-    navigation.goBack();
+    navigation.navigate('Loginview');
   };
 
 //Backend-important-kod => 
