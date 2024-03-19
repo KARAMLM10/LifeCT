@@ -38,8 +38,8 @@ const Navigation = () => {
         <Stack.Screen name='trainingssettings' options={{headerShown:false}} component={TrainingsSettings} />
         <Stack.Screen name='profileform' options={{headerShown:false}} component={ProfileForm} />
         <Stack.Screen name='Editimage' options={{headerShown:false}} component={EditIMGForm} />
-        <Stack.Screen name='Competition'options={{headerShown:false}} component={Competition} />
-        <Stack.Screen name='SearchCompetition'options={{headerShown:false}} component={SearchCompetition} />
+        <Stack.Screen name='Competition' options={{headerShown:false}} component={Competition} />
+        <Stack.Screen name='SearchCompetition' options={{headerShown:false}} component={SearchCompetition} />
       </Stack.Navigator>
     </NavigationContainer>
   );

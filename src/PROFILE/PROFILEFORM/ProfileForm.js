@@ -6,6 +6,7 @@ import { View, SafeAreaView, TouchableOpacity, Image, Text, TextInput, ScrollVie
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { ContainerStyle, IconStyle, pictureStyle, Imagestyle, TextInputStyle, inputStyle, Button1Style, TextStle } from "./Profileformstyle";
 import Navbar from "../../NAVBAR/Navbar";
+import { StatusBar } from 'expo-status-bar';
 const ProfileForm = ({ navigation }) => {
 
   
@@ -108,6 +109,8 @@ const DeletProfile = async () => {
         if (result.status === 200) {
             //const data = await result.json();
             //console.log(data);
+             
+            localStorage.clear();
             navigation.navigate('register');
         }
         else {
@@ -198,8 +201,8 @@ const DeletProfile = async () => {
           <Text style={TextStle.save2}>Avsluta Kontot</Text>
         </TouchableOpacity>
       </View>
-
       <Navbar />
+      <StatusBar style="auto" />
     </ScrollView>
   );
 };
